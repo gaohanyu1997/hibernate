@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ghy.manytomany.Role" table="t_role">
+        <id name="role_id" column="role_id">
+            <generator class="native"></generator>
+        </id>
+        <property name="role_name" column="role_name"></property>
+        <property name="role_memo" column="role_memo"></property>
+
+        <!-- 在角色里面表示所有用户,使用set标签 -->
+        <set name="setUser" table="user_role">
+            <!-- 角色在第三张表外键名称 -->
+            <key column="roleid"></key>
+            <!-- column属性值:user表 在第三张表外键名称 一致 -->
+            <many-to-many class="com.ghy.manytomany.User" column="userid"></many-to-many>
+        </set>
+
+    </class>
+</hibernate-mapping>
