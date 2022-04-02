@@ -5,10 +5,15 @@ import com.ghy.entity.Customer;
 import com.ghy.entity.LinkMan;
 import com.ghy.manytomany.Role;
 import com.ghy.manytomany.User;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.junit.Test;
+import sun.awt.image.ImageWatched;
+
+import java.util.List;
+import java.util.Set;
 
 public class HibernateManyToMany {
     //演示多对多级联保存
@@ -77,8 +82,21 @@ public class HibernateManyToMany {
             session = sessionFactory.openSession();
             tx = session.beginTransaction();
 
-            User user = (User) session.get(User.class,1);
-            session.delete(user);
+            /*User user = (User) session.get(User.class,1);
+            session.delete(user);*/
+
+            //查询所有客户
+            Criteria criteria= session.createCriteria(Customer.class);
+            List<Customer> list =  criteria.list();
+            //得到每个客户里面所有的联系人
+            for(Customer customer:list){
+                System.out.println(customer.getCid()+"::"+customer.getCustName());
+                //每个客户里面所有的联系人
+                Set<LinkMan> setLinkMan =  customer.getSetlinkMan();
+                for (LinkMan linkMan : setLinkMan){
+                    System.out.println(linkMan.getLkm_id()+"--"+linkMan.getLkm_name());
+                }
+            }
 
             tx.commit();    //提交事务
         }catch (Exception e){

@@ -14,11 +14,13 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <!-- 第三部分：把映射文件放到核心配置文件中 必须的 -->
-        <mapping resource="com/ghy/manytomany/User.hbm.xml"/>
+        <!--<mapping resource="com/ghy/manytomany/User.hbm.xml"/>
         <mapping resource="com/ghy/manytomany/Role.hbm.xml"/>
-
-        <!--<mapping resource="com/ghy/entity/Customer.hbm.xml"/>
-        <mapping resource="com/ghy/entity/LinkMan.hbm.xml"/>
+        <mapping resource="com/ghy/entity/Customer.hbm.xml"/>
         <mapping resource="com/ghy/entity/User.hbm.xml"/>-->
+
+        <mapping resource="com/ghy/entity/Customer.hbm.xml"/>
+        <mapping resource="com/ghy/entity/LinkMan.hbm.xml"/>
+
     </session-factory>
 </hibernate-configuration>
